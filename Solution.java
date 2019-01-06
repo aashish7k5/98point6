@@ -29,18 +29,18 @@ public class Solution
         int col = 0;
         if(s.length()!=5)
         {
-          error = true; System.out.println("ERROR"); continue; //if PUT input number is invalid number of digits.
+          error = true; System.out.println("ERROR"); continue; //if PUT input number is invalid number of digits, ERROR
         }
         try{
           col = Integer.parseInt(String.valueOf(s.substring(4))); //extracts col, the column number we're putting player's turn in
         }
         catch(NumberFormatException e)
         {
-          error = true; System.out.println("ERROR"); continue; //if PUT input number is invalid
+          error = true; System.out.println("ERROR"); continue; //if PUT input number is invalid, ERROR
         }
         if(col>arr[0].length-1)
         {
-          error = true; System.out.println("ERROR"); continue; //if PUT input number is greater than size of matrix allows
+          error = true; System.out.println("ERROR"); continue; //if PUT input number is greater than size of matrix allows, ERROR
         }
 
         //Decides which player is currently playing
@@ -125,8 +125,8 @@ public class Solution
   //Check if win
   public static boolean checkWin(char[][] arr)
   {
+    int count = 0; char s = 0; //Count identical charactera across winning directions, and if enough are reached, its a win.
     //Check if rows won
-    int count = 0; char s = 0;
     for(int i = 0; i<arr.length-2; i++)
     {
       s = arr[i][1];
@@ -148,16 +148,7 @@ public class Solution
         if(count==arr[0].length-1) return true;
       }
     }
-    for(int i = 1; i<arr[0].length; i++)
-    {
-      s = arr[0][i];
-      count = 0;
-      for(int j = 0; j<arr.length-2; j++)
-      {
-        if(s==arr[j][i] && s!='0') count++;
-        if(count==arr[0].length-1) return true;
-      }
-    }
+
     //Check if diagonal 1 results in a win
     count = 0;
     for(int i = 0; i<arr.length-3; i++)
@@ -167,6 +158,7 @@ public class Solution
       else break;
       if(count == arr.length-3) return true;
     }
+
     //Check if diagonal 2 results in a win
     count = 0;
     for(int i = arr.length-3; i>=1; i--)
@@ -176,6 +168,7 @@ public class Solution
       else break;
       if(count == arr.length-3) return true;
     }
+
     //If no condition reports a win, continue with the game.
     return false;
   }
